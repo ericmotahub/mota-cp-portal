@@ -181,13 +181,6 @@ const App: React.FC = () => {
           onClick={() => { setActivePersona('FILMMAKER'); setActiveView('prod-db'); }}
           className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${activePersona === 'FILMMAKER' ? 'bg-mota-pink text-dark-base' : 'text-gray-400 hover:text-white'}`}
         >
-          FILMMAKER
-        </button>
-        <button 
-          onClick={() => { setActivePersona('CREW'); setActiveView('dashboard'); }}
-          className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${activePersona === 'CREW' ? 'bg-mota-pink text-dark-base' : 'text-gray-400 hover:text-white'}`}
-        >
-          CREW
         </button>
       </div>
 
