@@ -1,0 +1,8 @@
+{
+  "name": "Mota Platform - CP WIP 2",
+  "description": "A centralized operating system for the global VFX industry connecting Filmmakers, Creative Partners, and Crew.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

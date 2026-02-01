@@ -1,0 +1,72 @@
+
+import React from 'react';
+import { Persona } from '../types';
+
+interface SidebarProps {
+  persona: Persona;
+  activeView: string;
+  setView: (view: string) => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ persona, activeView, setView }) => {
+  const navItems = {
+    PARTNER: [
+      { id: 'dashboard', label: 'Dashboard', icon: 'M4 6h16M4 12h16M4 18h16' },
+      { id: 'pipeline', label: 'Pipeline Manager', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10' },
+      { id: 'biz-dev', label: 'Business Development', icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+      { id: 'talent-search', label: 'Resource Suite', icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 110-8 4 4 0 010 8z' },
+      { id: 'partner-profile', label: 'Vertex Profile', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
+    ],
+    FILMMAKER: [
+      { id: 'vendor-search', label: 'Vendor Search', icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7' },
+      { id: 'prod-db', label: 'Project Slate', icon: 'M4 6h16M4 12h16M4 18h7' },
+      { id: 'exec-dir', label: 'Executive Directory', icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197' },
+    ],
+    CREW: [
+      { id: 'dashboard', label: 'Overview', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+      { id: 'talent-search', label: 'Resource Suite', icon: 'M15 12a3 3 0 11-6 0 3 3 0 016 0z' },
+      { id: 'finance', label: 'Finance', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+    ]
+  }[persona];
+
+  return (
+    <aside className="w-64 bg-[#1a1a1a] border-r border-dark-border flex flex-col h-full shrink-0">
+      <div className="p-6">
+        <div className="text-mota-pink font-oswald text-2xl font-bold tracking-tighter flex items-center gap-2">
+          MOTA <span className="text-white opacity-40 text-sm font-sans tracking-normal">| {persona}</span>
+        </div>
+      </div>
+
+      <nav className="flex-1 px-4 space-y-1 mt-4">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => setView(item.id)}
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors ${
+              activeView === item.id 
+                ? 'bg-dark-surface text-mota-pink border-l-4 border-mota-pink' 
+                : 'text-gray-400 hover:text-white hover:bg-dark-surface/50'
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+            </svg>
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
+      <div className="p-6 mt-auto border-t border-dark-border">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-mota-pink flex items-center justify-center text-dark-base font-bold">
+            EK
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <div className="text-sm font-semibold truncate">Eric Kohler</div>
+            <div className="text-xs text-gray-500 truncate">Head of Studio</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
+};
